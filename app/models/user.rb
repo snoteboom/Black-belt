@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates :email,   :presence   => true,
             :format               => { :with => email_regex },
             :uniqueness           => { :case_sensitive => false }
-
+            #this validates the form input
   validates :password,  :presence => true,
             :confirmation         => true,
             :length               => { :within => 4..100 }
@@ -44,7 +44,7 @@ class User < ActiveRecord::Base
       self.salt = Digest::SHA2.hexdigest("#{Time.now.utc}--#{self.password}") if self.new_record?
     
       # encrypt the password and store that in the encrypted_password field
-      self.encrypted_password = encrypt(self.password)
+      self.encrypted_password = encrypt(self.password)  #this self.password is what's in the post data!
     end
 
     # encrypt the password using both the salt and the passed password
