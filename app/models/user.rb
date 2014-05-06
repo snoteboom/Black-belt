@@ -52,3 +52,4 @@ class User < ActiveRecord::Base
       Digest::SHA2.hexdigest("#{self.salt}--#{pass}")
     end
 end
+
