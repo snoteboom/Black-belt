@@ -26,7 +26,7 @@ module SessionsHelper
     self.current_user = nil
   end
 
-  #this function returns true if the user I pass to the function is equal the current user signed it
+  #this function returns true if the user I pass to the function is equal the current user signed in
   def current_user?(user)
     user == self.current_user 
   end
