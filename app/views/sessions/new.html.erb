@@ -4,8 +4,11 @@
 	<p><%= flash[:error] %></p>
 <% end %>
 
-<%= simple_form_for(:session, :url => sessions_path) do |f| %>
-  <%= f.input :email %>
-  <%= f.input :password %>
-  <%= f.button :submit %>
+<%= form_tag(sessions_path) do |f| %>
+  <%= label_tag :email, 'your email goes here:'%><br>
+  <%= text_field_tag :email%><br>
+  <%= label_tag :password, 'your password goes here:'%><br>
+  <%= password_field_tag :password%><br>
+  <%= submit_tag :login%><br>
 <% end %>
+<a href="/">register</a>

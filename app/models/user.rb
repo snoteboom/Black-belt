@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
   #this allows my form to contain a password field and use it on the model side, even though there is no field
   #in my database called password (we used encrypted_password)
+  #this what's called a virtual attribute: it exists only for validation purposes
   attr_accessor :password, :password_confirmation
+
+  has_many :posts
+  has_many :likes
 
   email_regex = /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]+)\z/i
 
@@ -37,7 +41,7 @@ class User < ActiveRecord::Base
   end
 
 
-  private
+ # private
     def encrypt_password
       # generate a unique salt if it's a new user
       # self.password uses the attr_accessor we defined above to allow me to grab the inputed password 
@@ -52,4 +56,10 @@ class User < ActiveRecord::Base
       Digest::SHA2.hexdigest("#{self.salt}--#{pass}")
     end
 end
+
+# form data -> UPW
+# S = SHA2(UPW, time)
+#  PW = SHA2 (
+
+
 
